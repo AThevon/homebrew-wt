@@ -1,11 +1,11 @@
 # Homebrew Tap for wt
 
-This is the official Homebrew tap for [wt](https://github.com/YOUR_USERNAME/wt), a git worktree manager.
+This is the official Homebrew tap for [wt](https://github.com/AThevon/wt), a git worktree manager.
 
 ## Installation
 
 ```bash
-brew tap YOUR_USERNAME/wt
+brew tap AThevon/wt
 brew install wt
 ```
 

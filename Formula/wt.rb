@@ -3,9 +3,9 @@
 
 class Wt < Formula
   desc "Git worktree manager with fzf integration and GitHub PR support"
-  homepage "https://github.com/YOUR_USERNAME/wt"
-  url "https://github.com/YOUR_USERNAME/wt/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "REPLACE_WITH_SHA256_AFTER_RELEASE"
+  homepage "https://github.com/AThevon/wt"
+  url "https://github.com/AThevon/wt/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "a5ee6b14149092142a8bbff55472bd4a71b98ce86451260d5446f4e0d93ba8f7"
   license "MIT"
 
   depends_on "fzf"
