@@ -27,6 +27,6 @@ class Wt < Formula
   end
 
   test do
-    assert_match "wt 1.1.0")
+    assert_match "wt 1.1.0", shell_output("#{bin}/wt-core --version 2>&1")
   end
 end

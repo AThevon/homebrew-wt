@@ -47,8 +47,8 @@ jobs:
           # Update SHA256
           sed -i "s|sha256 \".*\"|sha256 \"${SHA}\"|" Formula/wt.rb
 
-          # Update version in test
-          sed -i "s|assert_match \"wt .*\"|assert_match \"wt ${VERSION}\"|" Formula/wt.rb
+          # Update version in test (use [^"]* to not match past the closing quote)
+          sed -i "s|assert_match \"wt [^\"]*\"|assert_match \"wt ${VERSION}\"|" Formula/wt.rb
 
       - name: Commit and push
         run: |
