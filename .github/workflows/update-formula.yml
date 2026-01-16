@@ -1,0 +1,59 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to update to (e.g., v1.0.1)'
+        required: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "tag=${{ github.event.client_payload.tag }}" >> $GITHUB_OUTPUT
+          else
+            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download and calculate SHA256
+        id: sha
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          URL="https://github.com/AThevon/wt/archive/refs/tags/${TAG}.tar.gz"
+          SHA=$(curl -sL "$URL" | shasum -a 256 | cut -d' ' -f1)
+          echo "sha256=$SHA" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Update formula
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          VERSION="${TAG#v}"
+          SHA="${{ steps.sha.outputs.sha256 }}"
+
+          # Update URL
+          sed -i "s|url \".*\"|url \"https://github.com/AThevon/wt/archive/refs/tags/${TAG}.tar.gz\"|" Formula/wt.rb
+
+          # Update SHA256
+          sed -i "s|sha256 \".*\"|sha256 \"${SHA}\"|" Formula/wt.rb
+
+          # Update version in test
+          sed -i "s|assert_match \"wt .*\"|assert_match \"wt ${VERSION}\"|" Formula/wt.rb
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/wt.rb
+          git commit -m "Update wt to ${{ steps.tag.outputs.tag }}"
+          git push
