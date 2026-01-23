@@ -4,8 +4,8 @@
 class Wt < Formula
   desc "Git worktree manager with fzf integration and GitHub PR support"
   homepage "https://github.com/AThevon/wt"
-  url "https://github.com/AThevon/wt/archive/refs/tags/v1.3.1.tar.gz"
-  sha256 "de55684ee77863fc476f3b5da522945b0e5f1537519fc1efc7b502fc8c7088cd"
+  url "https://github.com/AThevon/wt/archive/refs/tags/v1.4.0.tar.gz"
+  sha256 "0e27a7685b914f4001e11cd8420a1cecdd57882244dde8d38189a12a3676b413"
   license "MIT"
 
   depends_on "fzf"
@@ -27,6 +27,6 @@ class Wt < Formula
   end
 
   test do
-    assert_match "wt 1.3.1", shell_output("#{bin}/wt-core --version 2>&1")
+    assert_match "wt 1.4.0", shell_output("#{bin}/wt-core --version 2>&1")
   end
 end
