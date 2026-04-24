@@ -1,12 +1,15 @@
 # typed: false
 # frozen_string_literal: true
 
-class Wt < Formula
+class Worktigre < Formula
   desc "Git worktree manager with fzf integration and GitHub/GitLab support"
   homepage "https://github.com/AThevon/worktigre"
   url "https://github.com/AThevon/worktigre/archive/refs/tags/v2.2.0.tar.gz"
   sha256 "57c27030be32ca8df4b2799a6fada4280bdbec076b7de5d152e94e51c419f683"
-  license "MIT"
+  license "GPL-3.0-or-later"
+
+  # Allow existing users who installed `wt` to migrate on `brew upgrade`
+  oldname "wt"
 
   depends_on "fzf"
   depends_on "gh"

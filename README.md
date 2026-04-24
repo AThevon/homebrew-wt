@@ -1,12 +1,18 @@
-# Homebrew Tap for wt
+# Homebrew Tap for worktigre
 
-This is the official Homebrew tap for [wt](https://github.com/AThevon/wt), a git worktree manager.
+This is the official Homebrew tap for [worktigre](https://github.com/AThevon/worktigre), a git worktree manager.
 
 ## Installation
 
 ```bash
-brew tap AThevon/wt
-brew install wt
+brew tap AThevon/worktigre
+brew install worktigre
+```
+
+The old name `wt` still works as an alias:
+
+```bash
+brew install AThevon/worktigre/wt
 ```
 
 ## Post-installation
@@ -21,5 +27,5 @@ eval "$(wt-core --shell-init)"
 
 ```bash
 brew update
-brew upgrade wt
+brew upgrade worktigre
 ```
